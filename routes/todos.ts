@@ -21,4 +21,25 @@ router.post('/todo', (req, res, next) => {
   res.status(201).json({ message: 'Todo saved sucessfully', todo: newTodo, todos });
 });
 
+// To edit a todo
+router.put('/todo/:todoId', (req, res, next) => {
+  const tid = req.params.todoId;
+
+  // We could have used findIndex() instead of find(). This is also an option
+  const todo: Todo | undefined = todos?.find((item) => item.id === tid);
+
+  if (todo === undefined || todo === null) {
+    return res.status(404).json({ message: 'Todo not found' });
+  }
+
+  const { text } = req.body;
+
+  if (typeof text !== 'string') {
+    return res.status(400).json({ message: 'Invalid request body' });
+  }
+
+  todo.text = text;
+  res.status(200).json({ message: 'Todo updated successfully.', todo });
+});
+
 export default router;
