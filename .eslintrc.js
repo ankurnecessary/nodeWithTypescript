@@ -21,5 +21,8 @@ module.exports = {
     ecmaVersion: 'latest',
     sourceType: 'module'
   },
-  rules: {}
+  rules: {
+    semi: ['error', 'always'],
+    '@typescript-eslint/semi': ['error', 'always']
+  }
 };
