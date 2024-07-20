@@ -10,7 +10,7 @@ const router = Router();
 
 // To fetch all the todos
 router.get('/', (req, res, next) => {
-  res.status(200).json(todos);
+  res.status(200).json({ todos });
 });
 
 // To save a todo
@@ -35,6 +35,7 @@ router.put('/todo/:todoId', (req, res, next) => {
   // We could have used findIndex() instead of find(). This is also an option
   const todo: Todo | undefined = todos?.find((item) => item.id === tid);
 
+  // We added both kind of if checks because of eslint setting which forced us to define both the checks instead of !todo
   if (todo === undefined || todo === null) {
     return res.status(404).json({ message: 'Todo not found' });
   }
