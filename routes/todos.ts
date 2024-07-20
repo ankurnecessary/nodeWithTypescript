@@ -1,7 +1,7 @@
 import { Router } from 'express';
 import { type Todo } from '../models/todo';
 
-const todos: Todo[] = [];
+let todos: Todo[] = [];
 
 const router = Router();
 
@@ -40,6 +40,12 @@ router.put('/todo/:todoId', (req, res, next) => {
 
   todo.text = text;
   res.status(200).json({ message: 'Todo updated successfully.', todo });
+});
+
+// To delete a todo
+router.delete('/todo/:todoId', (req, res, next) => {
+  todos = todos.filter((todoItem) => todoItem.id !== req.params.todoId);
+  res.status(201).json({ message: 'Todo deleted sucessfully.', todos });
 });
 
 export default router;
