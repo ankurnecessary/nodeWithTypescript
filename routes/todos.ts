@@ -18,7 +18,9 @@ router.post('/todo', (req, res, next) => {
   };
 
   todos.push(newTodo);
-  res.status(201).json({ message: 'Todo saved sucessfully', todo: newTodo, todos });
+  res
+    .status(201)
+    .json({ message: 'Todo saved sucessfully', todo: newTodo, todos });
 });
 
 // To edit a todo
