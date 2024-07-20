@@ -35,5 +35,6 @@ module.exports = {
         requireLast: true
       }
     }]
-  }
+  },
+  ignorePatterns: ['dist/**'] // Add this line to ignore the dist directory
 };
