@@ -1,6 +1,9 @@
 import { Router } from 'express';
 import { type Todo } from '../models/todo';
 
+interface RequestBody { text: string; }
+interface RequestParams { todoId: string; }
+
 let todos: Todo[] = [];
 
 const router = Router();
@@ -12,9 +15,10 @@ router.get('/', (req, res, next) => {
 
 // To save a todo
 router.post('/todo', (req, res, next) => {
+  const body = req.body as RequestBody;
   const newTodo: Todo = {
     id: new Date().toISOString(),
-    text: req.body.text
+    text: body.text
   };
 
   todos.push(newTodo);
@@ -25,7 +29,8 @@ router.post('/todo', (req, res, next) => {
 
 // To edit a todo
 router.put('/todo/:todoId', (req, res, next) => {
-  const tid = req.params.todoId;
+  const params = req.params as RequestParams;
+  const tid = params.todoId;
 
   // We could have used findIndex() instead of find(). This is also an option
   const todo: Todo | undefined = todos?.find((item) => item.id === tid);
@@ -34,7 +39,7 @@ router.put('/todo/:todoId', (req, res, next) => {
     return res.status(404).json({ message: 'Todo not found' });
   }
 
-  const { text } = req.body;
+  const { text } = req.body as RequestBody;
 
   if (typeof text !== 'string') {
     return res.status(400).json({ message: 'Invalid request body' });
@@ -46,7 +51,8 @@ router.put('/todo/:todoId', (req, res, next) => {
 
 // To delete a todo
 router.delete('/todo/:todoId', (req, res, next) => {
-  todos = todos.filter((todoItem) => todoItem.id !== req.params.todoId);
+  const params = req.params as RequestParams;
+  todos = todos.filter((todoItem) => todoItem.id !== params.todoId);
   res.status(201).json({ message: 'Todo deleted sucessfully.', todos });
 });
 
