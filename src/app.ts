@@ -8,4 +8,6 @@ app.use(bodyParser.json());
 
 app.use(todosRouter);
 
-app.listen(5000);
+app.listen(5000, () => {
+  console.log('Server running on port 5000');
+});
