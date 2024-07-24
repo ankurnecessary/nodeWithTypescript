@@ -15,6 +15,9 @@ router.get('/', (req, res, next) => {
 
 // To save a todo
 router.post('/todo', (req, res, next) => {
+  /*
+    While making POST request from the browser we should make sure that the `JSON.stringify()` should be used before sending the data in th `body` property of `fetch()`. Also the `content-type` should be `application/json` in request headers.
+  */
   const body = req.body as RequestBody;
   const newTodo: Todo = {
     id: new Date().toISOString(),
