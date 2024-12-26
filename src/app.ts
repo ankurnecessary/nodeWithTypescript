@@ -5,7 +5,10 @@ import bodyParser from 'body-parser';
 
 const app = express();
 
-// app.use(bodyParser.urlencoded()); // x-www-form-urlencoded <form>
+// Parse application/x-www-form-urlencoded
+app.use(bodyParser.urlencoded({ extended: true }));
+
+// Parse application/json
 app.use(bodyParser.json());
 
 // To  handle CORS error in the browser
