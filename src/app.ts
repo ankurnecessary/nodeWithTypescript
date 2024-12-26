@@ -1,4 +1,5 @@
 import express from 'express';
+import type { Request, Response, NextFunction } from 'express';
 import todosRouter from './routes/todos';
 import bodyParser from 'body-parser';
 
