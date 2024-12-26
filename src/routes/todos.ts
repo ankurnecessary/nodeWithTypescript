@@ -1,8 +1,12 @@
 import { Router } from 'express';
 import { type Todo } from '../models/todo';
 
-interface RequestBody { text: string; }
-interface RequestParams { todoId: string; }
+interface RequestBody {
+  text: string;
+}
+interface RequestParams {
+  todoId: string;
+}
 
 let todos: Todo[] = [];
 
