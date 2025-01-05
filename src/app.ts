@@ -1,6 +1,5 @@
 import express from 'express';
 import type { Request, Response, NextFunction } from 'express';
-import todosRouter from './routes/todos';
 import bodyParser from 'body-parser';
 
 const app = express();
@@ -23,8 +22,6 @@ app.use((req: Request, res: Response, next: NextFunction): void => {
   res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
   next();
 });
-
-app.use(todosRouter);
 
 app.listen(5000, () => {
   console.log('Server running on port 5000');
