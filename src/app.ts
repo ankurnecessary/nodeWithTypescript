@@ -2,7 +2,9 @@ import express from 'express';
 import type { Request, Response, NextFunction } from 'express';
 import bodyParser from 'body-parser';
 import serverless from 'serverless-http';
+import dotenv from 'dotenv';
 
+dotenv.config();
 const app = express();
 
 // Parse application/x-www-form-urlencoded
