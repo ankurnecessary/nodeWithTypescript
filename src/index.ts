@@ -26,7 +26,7 @@ app.use((req: Request, res: Response, next: NextFunction): void => {
   next();
 });
 
-app.get('/', (req: Request, res: Response) => {
+app.get('/welcome', (req: Request, res: Response) => {
   res.send(`Welcome to ecomerce APIs on ${process.env.NODE_ENV} server!`);
 });
 
