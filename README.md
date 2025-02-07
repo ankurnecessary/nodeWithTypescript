@@ -16,4 +16,5 @@ This project gives a boiler plate code for a node project with typescript. It ha
 8. `npm run test` - This will fire up the test files and run the test cases, if present.
 9. `prepare` - This will fire automatically when we will run the command `npm i`. It will fire after installing all the dependencies.
 10. `npm run lint` - This command will find any kind of linting issues. If we have.
-11. `npm run prod:update` - This command will create a new docker image, uploads new image to AWS ECR and update existing AWS Lambda function with new image at AWS ECR.
+11. `npm run prod:create` - This command will create a new docker image, uploads new image to AWS ECR, create a new AWS Lambda function and update it with newly created docker image at AWS ECR.
+12. `npm run prod:update` - This command will update an existing docker image, uploads that image to AWS ECR and update existing AWS Lambda function with new image at AWS ECR.
