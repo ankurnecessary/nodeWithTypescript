@@ -1,7 +1,10 @@
 import express from 'express';
 import type { Request, Response, NextFunction } from 'express';
 import bodyParser from 'body-parser';
+import serverless from 'serverless-http';
+import dotenv from 'dotenv';
 
+dotenv.config();
 const app = express();
 
 // Parse application/x-www-form-urlencoded
@@ -23,6 +26,16 @@ app.use((req: Request, res: Response, next: NextFunction): void => {
   next();
 });
 
-app.listen(5000, () => {
-  console.log('Server running on port 5000');
+app.get('/welcome', (req: Request, res: Response) => {
+  res.send(`Welcome to ecomerce APIs on ${process.env.NODE_ENV} server!`);
 });
+
+if (process.env.NODE_ENV === 'development') {
+  // Local development mode
+  app.listen(5000, () => {
+    console.log('Server running on port 5000');
+  });
+} else {
+  // AWS Lambda mode
+  module.exports.handler = serverless(app);
+}
